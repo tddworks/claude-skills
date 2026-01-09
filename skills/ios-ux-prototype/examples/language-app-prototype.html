@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lingua - Language Learning App UX Prototype</title>
+  <style>
+/* iOS UX Prototype Design System */
+:root {
+  --bg-primary: #000000;
+  --bg-grouped: #1c1c1e;
+  --bg-secondary: #2c2c2e;
+  --bg-tertiary: #3a3a3c;
+  --bg-elevated: #1c1c1e;
+  --fill-primary: rgba(120, 120, 128, 0.36);
+  --fill-secondary: rgba(120, 120, 128, 0.32);
+  --fill-tertiary: rgba(120, 120, 128, 0.24);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(235, 235, 245, 0.6);
+  --text-tertiary: rgba(235, 235, 245, 0.3);
+  --blue: #0a84ff;
+  --green: #30d158;
+  --orange: #ff9f0a;
+  --red: #ff453a;
+  --purple: #bf5af2;
+  --pink: #ff375f;
+  --yellow: #ffd60a;
+  --cyan: #64d2ff;
+  --mint: #63e6be;
+  --separator: rgba(84, 84, 88, 0.65);
+  --phone-width: 375px;
+  --phone-height: 812px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', sans-serif;
+  background: #0d0d0f;
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { padding: 48px 32px; max-width: 1800px; margin: 0 auto; }
+.page-header { text-align: center; margin-bottom: 64px; }
+.page-header h1 { font-size: 44px; font-weight: 700; letter-spacing: -0.022em; margin-bottom: 12px; }
+.page-header p { font-size: 17px; color: var(--text-secondary); max-width: 700px; margin: 0 auto; line-height: 1.5; }
+
+.journey-row { display: flex; align-items: flex-start; justify-content: center; gap: 32px; margin-bottom: 80px; flex-wrap: wrap; }
+.journey-step { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.step-header { display: flex; align-items: center; gap: 10px; }
+.step-number { width: 28px; height: 28px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; }
+.step-title { font-size: 13px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+.flow-arrow { display: flex; align-items: center; padding-top: 180px; color: var(--text-tertiary); }
+.flow-arrow svg { width: 32px; height: 32px; }
+
+.phone-frame { width: var(--phone-width); height: var(--phone-height); background: #000; border-radius: 47px; padding: 11px; position: relative; box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 50px 100px -20px rgba(0,0,0,0.7); }
+.phone-screen { width: 100%; height: 100%; background: var(--bg-primary); border-radius: 39px; overflow: hidden; position: relative; }
+.dynamic-island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 126px; height: 37px; background: #000; border-radius: 20px; z-index: 100; }
+.screen-layout { height: 100%; display: flex; flex-direction: column; }
+
+.status-bar { height: 54px; padding: 14px 24px 0; display: flex; justify-content: space-between; align-items: flex-start; font-size: 14px; font-weight: 600; }
+.status-bar-left { width: 54px; }
+.status-bar-right { display: flex; gap: 5px; align-items: center; }
+
+.nav-large { padding: 8px 16px 12px; }
+.nav-large h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.01em; }
+.nav-inline { height: 44px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--separator); position: relative; }
+.nav-inline-left { display: flex; align-items: center; gap: 4px; color: var(--blue); font-size: 17px; }
+.nav-inline-left svg { width: 20px; height: 20px; }
+.nav-inline-title { font-size: 17px; font-weight: 600; position: absolute; left: 50%; transform: translateX(-50%); }
+.nav-inline-right { color: var(--blue); font-size: 17px; }
+
+.scroll-content { flex: 1; overflow-y: auto; padding-bottom: 34px; }
+
+.segmented-control { margin: 8px 16px 16px; padding: 2px; background: var(--fill-tertiary); border-radius: 9px; display: flex; }
+.segment { flex: 1; padding: 7px 12px; text-align: center; font-size: 13px; font-weight: 500; color: var(--text-primary); border-radius: 7px; cursor: pointer; transition: all 0.2s; }
+.segment.active { background: var(--bg-secondary); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+
+.section { padding: 0 16px; margin-bottom: 24px; }
+.section-title { font-size: 13px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 8px; padding-left: 16px; }
+
+.list-group { background: var(--bg-grouped); border-radius: 12px; overflow: hidden; }
+.list-row { display: flex; align-items: center; padding: 12px 16px; cursor: pointer; }
+.list-row:not(:last-child) { border-bottom: 0.5px solid var(--separator); }
+.list-icon { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 14px; }
+.list-icon.blue { background: var(--blue); color: #fff; }
+.list-icon.purple { background: var(--purple); color: #fff; }
+.list-icon.orange { background: var(--orange); color: #000; }
+.list-icon.green { background: var(--green); color: #000; }
+.list-icon.yellow { background: var(--yellow); color: #000; }
+.list-icon.red { background: var(--red); color: #fff; }
+.list-icon.cyan { background: var(--cyan); color: #000; }
+.list-row span { flex: 1; font-size: 17px; }
+.list-row .value { color: var(--text-secondary); font-size: 17px; margin-right: 8px; }
+.chevron { color: var(--text-tertiary); margin-left: 8px; }
+
+.tab-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 83px; background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(20px); border-top: 0.5px solid var(--separator); padding: 0 16px; padding-bottom: 34px; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 6px; }
+.tab-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 12px; cursor: pointer; }
+.tab-icon { font-size: 24px; color: var(--text-tertiary); transition: color 0.2s; }
+.tab-item.active .tab-icon { color: var(--blue); }
+.tab-label { font-size: 10px; color: var(--text-tertiary); transition: color 0.2s; }
+.tab-item.active .tab-label { color: var(--blue); }
+
+.annotation { position: absolute; background: var(--orange); color: #000; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; white-space: nowrap; z-index: 200; }
+.annotation::before { content: ''; position: absolute; width: 0; height: 0; }
+.annotation.right::before { left: -8px; top: 50%; transform: translateY(-50%); border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 8px solid var(--orange); }
+.annotation.left::before { right: -8px; top: 50%; transform: translateY(-50%); border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 8px solid var(--orange); }
+.annotation.bottom::before { top: -8px; left: 50%; transform: translateX(-50%); border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid var(--orange); }
+
+.section-divider { height: 64px; display: flex; align-items: center; justify-content: center; margin: 24px 0; }
+.section-divider-line { flex: 1; height: 1px; background: var(--separator); }
+.section-divider-text { padding: 0 24px; font-size: 14px; color: var(--text-tertiary); font-weight: 500; }
+
+/* Custom Language App Styles */
+.hero-section { padding: 24px 16px; text-align: center; }
+.hero-greeting { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.hero-subtitle { font-size: 15px; color: var(--text-secondary); }
+
+.streak-card { background: linear-gradient(135deg, var(--orange) 0%, var(--pink) 100%); border-radius: 16px; padding: 20px; margin: 0 16px 20px; display: flex; align-items: center; gap: 16px; }
+.streak-icon { font-size: 48px; }
+.streak-info h3 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.streak-info p { font-size: 13px; opacity: 0.9; }
+
+.daily-goal { background: var(--bg-grouped); border-radius: 16px; padding: 20px; margin: 0 16px 20px; }
+.daily-goal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.daily-goal-header h3 { font-size: 17px; font-weight: 600; }
+.daily-goal-header span { font-size: 15px; color: var(--green); font-weight: 600; }
+.progress-bar { height: 8px; background: var(--fill-tertiary); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 0.3s; }
+.goal-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 13px; color: var(--text-secondary); }
+
+.lesson-card { background: var(--bg-grouped); border-radius: 16px; padding: 16px; margin: 0 16px 12px; display: flex; align-items: center; gap: 16px; }
+.lesson-card.highlighted { background: rgba(10, 132, 255, 0.15); border: 1px solid rgba(10, 132, 255, 0.3); }
+.lesson-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+.lesson-icon.vocab { background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%); }
+.lesson-icon.grammar { background: linear-gradient(135deg, var(--green) 0%, var(--cyan) 100%); }
+.lesson-icon.speaking { background: linear-gradient(135deg, var(--orange) 0%, var(--yellow) 100%); }
+.lesson-icon.listening { background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%); }
+.lesson-details { flex: 1; }
+.lesson-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+.lesson-meta { font-size: 13px; color: var(--text-secondary); }
+.lesson-progress { width: 48px; height: 48px; position: relative; }
+.lesson-progress-ring { width: 100%; height: 100%; transform: rotate(-90deg); }
+.lesson-progress-ring circle { fill: none; stroke-width: 4; }
+.lesson-progress-ring .bg { stroke: var(--fill-tertiary); }
+.lesson-progress-ring .progress { stroke: var(--green); stroke-linecap: round; }
+.lesson-progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 12px; font-weight: 600; }
+
+.quiz-container { padding: 20px 16px; }
+.quiz-progress { display: flex; gap: 4px; margin-bottom: 24px; }
+.quiz-dot { flex: 1; height: 4px; background: var(--fill-tertiary); border-radius: 2px; }
+.quiz-dot.completed { background: var(--green); }
+.quiz-dot.current { background: var(--blue); }
+.quiz-question { font-size: 22px; font-weight: 600; text-align: center; margin-bottom: 32px; line-height: 1.4; }
+.quiz-audio { width: 80px; height: 80px; background: var(--bg-grouped); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 36px; }
+.quiz-options { display: flex; flex-direction: column; gap: 12px; }
+.quiz-option { background: var(--bg-grouped); border-radius: 12px; padding: 16px; font-size: 17px; text-align: center; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; }
+.quiz-option:hover { background: var(--bg-secondary); }
+.quiz-option.selected { border-color: var(--blue); background: rgba(10, 132, 255, 0.15); }
+.quiz-option.correct { border-color: var(--green); background: rgba(48, 209, 88, 0.15); }
+.quiz-option.incorrect { border-color: var(--red); background: rgba(255, 69, 58, 0.15); }
+
+.word-card { background: var(--bg-grouped); border-radius: 20px; padding: 32px 24px; margin: 0 16px 20px; text-align: center; }
+.word-card-word { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+.word-card-pronunciation { font-size: 18px; color: var(--cyan); margin-bottom: 16px; }
+.word-card-translation { font-size: 20px; color: var(--text-secondary); margin-bottom: 24px; }
+.word-card-example { background: var(--bg-secondary); border-radius: 12px; padding: 16px; font-size: 15px; line-height: 1.5; }
+.word-card-example em { color: var(--yellow); font-style: normal; font-weight: 600; }
+
+.action-buttons { display: flex; gap: 12px; padding: 0 16px; margin-top: 20px; }
+.action-btn { flex: 1; padding: 16px; border-radius: 12px; font-size: 17px; font-weight: 600; text-align: center; cursor: pointer; }
+.action-btn.primary { background: var(--blue); color: #fff; }
+.action-btn.secondary { background: var(--bg-grouped); color: var(--text-primary); }
+.action-btn.success { background: var(--green); color: #000; }
+.action-btn.danger { background: var(--red); color: #fff; }
+
+.continue-btn { background: var(--blue); border-radius: 14px; padding: 16px; margin: 20px 16px; text-align: center; font-size: 17px; font-weight: 600; }
+
+.language-selector { padding: 16px; }
+.language-option { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--bg-grouped); border-radius: 12px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; }
+.language-option:hover { background: var(--bg-secondary); }
+.language-option.selected { border-color: var(--blue); background: rgba(10, 132, 255, 0.15); }
+.language-flag { font-size: 32px; }
+.language-name { font-size: 17px; font-weight: 600; }
+.language-native { font-size: 13px; color: var(--text-secondary); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 16px; margin-bottom: 20px; }
+.stat-card { background: var(--bg-grouped); border-radius: 12px; padding: 16px; text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.stat-value.blue { color: var(--blue); }
+.stat-value.green { color: var(--green); }
+.stat-value.orange { color: var(--orange); }
+.stat-value.purple { color: var(--purple); }
+.stat-label { font-size: 13px; color: var(--text-secondary); }
+
+.achievement-row { display: flex; align-items: center; gap: 16px; padding: 16px; }
+.achievement-badge { width: 56px; height: 56px; background: linear-gradient(135deg, var(--yellow) 0%, var(--orange) 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+.achievement-badge.locked { background: var(--fill-tertiary); opacity: 0.5; }
+.achievement-info h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+.achievement-info p { font-size: 13px; color: var(--text-secondary); }
+
+.review-summary { text-align: center; padding: 40px 16px 20px; }
+.review-score { font-size: 64px; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+.review-label { font-size: 20px; color: var(--text-secondary); margin-bottom: 24px; }
+.review-stats { display: flex; justify-content: center; gap: 32px; }
+.review-stat { text-align: center; }
+.review-stat-value { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+.review-stat-label { font-size: 13px; color: var(--text-secondary); }
+
+.xp-earned { background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%); border-radius: 16px; padding: 20px; margin: 20px 16px; text-align: center; }
+.xp-value { font-size: 36px; font-weight: 700; margin-bottom: 4px; }
+.xp-label { font-size: 15px; opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <h1>Lingua - Language Learning</h1>
+      <p>iOS UX prototype showcasing the complete learning journey from daily practice to vocabulary mastery and progress tracking</p>
+    </header>
+
+    <!-- Journey 1: Daily Learning Flow -->
+    <div class="journey-row">
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <span class="step-title">Home Dashboard</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:41</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="scroll-content">
+                <div class="hero-section">
+                  <div class="hero-greeting">Bonjour, Alex! 👋</div>
+                  <div class="hero-subtitle">Ready for your daily French lesson?</div>
+                </div>
+                <div class="streak-card">
+                  <div class="streak-icon">🔥</div>
+                  <div class="streak-info">
+                    <h3>12 Day Streak!</h3>
+                    <p>Keep going! You're on fire.</p>
+                  </div>
+                </div>
+                <div class="daily-goal">
+                  <div class="daily-goal-header">
+                    <h3>Daily Goal</h3>
+                    <span>15/20 XP</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                  </div>
+                  <div class="goal-labels">
+                    <span>5 XP to go</span>
+                    <span>20 XP</span>
+                  </div>
+                </div>
+                <div style="padding: 0 16px 8px;">
+                  <span style="font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.02em;">Today's Lessons</span>
+                </div>
+                <div class="lesson-card highlighted">
+                  <div class="lesson-icon vocab">📚</div>
+                  <div class="lesson-details">
+                    <div class="lesson-title">Food & Dining</div>
+                    <div class="lesson-meta">12 new words • 5 min</div>
+                  </div>
+                  <div style="color: var(--blue); font-weight: 600;">Start</div>
+                </div>
+                <div class="lesson-card">
+                  <div class="lesson-icon grammar">✏️</div>
+                  <div class="lesson-details">
+                    <div class="lesson-title">Past Tense</div>
+                    <div class="lesson-meta">Grammar • 8 min</div>
+                  </div>
+                  <div class="lesson-progress">
+                    <svg class="lesson-progress-ring" viewBox="0 0 48 48">
+                      <circle class="bg" cx="24" cy="24" r="20"/>
+                      <circle class="progress" cx="24" cy="24" r="20" stroke-dasharray="126" stroke-dashoffset="63"/>
+                    </svg>
+                    <span class="lesson-progress-text">50%</span>
+                  </div>
+                </div>
+                <div class="lesson-card">
+                  <div class="lesson-icon speaking">🎙️</div>
+                  <div class="lesson-details">
+                    <div class="lesson-title">Pronunciation</div>
+                    <div class="lesson-meta">Speaking • 6 min</div>
+                  </div>
+                  <span class="chevron">›</span>
+                </div>
+              </div>
+              <div class="tab-bar">
+                <div class="tab-item active">
+                  <span class="tab-icon">🏠</span>
+                  <span class="tab-label">Home</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">📖</span>
+                  <span class="tab-label">Learn</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">🏆</span>
+                  <span class="tab-label">Profile</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">⚙️</span>
+                  <span class="tab-label">Settings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="annotation right" style="top: 340px; left: 390px;">Start recommended lesson →</div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <span class="step-title">Vocabulary Lesson</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:42</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="nav-inline">
+                <div class="nav-inline-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                  </svg>
+                </div>
+                <span class="nav-inline-title">Food & Dining</span>
+                <span class="nav-inline-right">1/12</span>
+              </div>
+              <div class="scroll-content">
+                <div class="quiz-progress" style="padding: 16px 16px 0;">
+                  <div class="quiz-dot completed"></div>
+                  <div class="quiz-dot current"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                  <div class="quiz-dot"></div>
+                </div>
+                <div class="word-card">
+                  <div class="word-card-word">le pain</div>
+                  <div class="word-card-pronunciation">/lə pɛ̃/</div>
+                  <div class="word-card-translation">bread</div>
+                  <div class="word-card-example">
+                    Je mange <em>du pain</em> chaque matin.
+                    <br><br>
+                    <span style="color: var(--text-secondary);">I eat bread every morning.</span>
+                  </div>
+                </div>
+                <div class="quiz-audio" style="margin-top: 16px;">
+                  🔊
+                </div>
+                <div class="action-buttons">
+                  <div class="action-btn secondary">I knew this</div>
+                  <div class="action-btn primary">Learn more</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="annotation right" style="top: 520px; left: 390px;">Tap to hear pronunciation →</div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <span class="step-title">Quiz Practice</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:44</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="nav-inline">
+                <div class="nav-inline-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </div>
+                <span class="nav-inline-title">Quiz</span>
+                <span class="nav-inline-right"></span>
+              </div>
+              <div class="scroll-content">
+                <div class="quiz-container">
+                  <div class="quiz-progress">
+                    <div class="quiz-dot completed"></div>
+                    <div class="quiz-dot completed"></div>
+                    <div class="quiz-dot completed"></div>
+                    <div class="quiz-dot current"></div>
+                    <div class="quiz-dot"></div>
+                  </div>
+                  <div class="quiz-question">
+                    What is the French word for "bread"?
+                  </div>
+                  <div class="quiz-options">
+                    <div class="quiz-option">le fromage</div>
+                    <div class="quiz-option selected">le pain</div>
+                    <div class="quiz-option">le vin</div>
+                    <div class="quiz-option">le lait</div>
+                  </div>
+                </div>
+                <div class="continue-btn">Check Answer</div>
+              </div>
+            </div>
+          </div>
+          <div class="annotation right" style="top: 410px; left: 390px;">Select correct answer →</div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <span class="step-title">Lesson Complete</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:48</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="scroll-content" style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="review-summary">
+                  <div class="review-score">92%</div>
+                  <div class="review-label">Great Job! 🎉</div>
+                  <div class="review-stats">
+                    <div class="review-stat">
+                      <div class="review-stat-value" style="color: var(--green);">11</div>
+                      <div class="review-stat-label">Correct</div>
+                    </div>
+                    <div class="review-stat">
+                      <div class="review-stat-value" style="color: var(--red);">1</div>
+                      <div class="review-stat-label">Incorrect</div>
+                    </div>
+                    <div class="review-stat">
+                      <div class="review-stat-value" style="color: var(--blue);">12</div>
+                      <div class="review-stat-label">Words</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="xp-earned">
+                  <div class="xp-value">+25 XP</div>
+                  <div class="xp-label">Experience earned</div>
+                </div>
+                <div style="background: var(--bg-grouped); border-radius: 12px; padding: 16px; margin: 0 16px 20px; display: flex; align-items: center; gap: 12px;">
+                  <span style="font-size: 32px;">🔥</span>
+                  <div style="flex: 1;">
+                    <div style="font-size: 17px; font-weight: 600;">Streak Extended!</div>
+                    <div style="font-size: 13px; color: var(--text-secondary);">13 days and counting</div>
+                  </div>
+                </div>
+                <div class="action-buttons">
+                  <div class="action-btn secondary">Review Words</div>
+                  <div class="action-btn success">Continue</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <span class="section-divider-text">Profile & Progress Flow</span>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <!-- Journey 2: Profile & Progress -->
+    <div class="journey-row">
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <span class="step-title">Profile Overview</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:41</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="nav-large">
+                <h1>Profile</h1>
+              </div>
+              <div class="scroll-content">
+                <div style="text-align: center; padding: 16px;">
+                  <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 36px;">A</div>
+                  <div style="font-size: 22px; font-weight: 600; margin-bottom: 4px;">Alex Johnson</div>
+                  <div style="font-size: 15px; color: var(--text-secondary);">Learning French • Level 7</div>
+                </div>
+                <div class="stats-grid">
+                  <div class="stat-card">
+                    <div class="stat-value orange">🔥 12</div>
+                    <div class="stat-label">Day Streak</div>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-value blue">1,247</div>
+                    <div class="stat-label">Total XP</div>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-value green">324</div>
+                    <div class="stat-label">Words Learned</div>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-value purple">45h</div>
+                    <div class="stat-label">Time Spent</div>
+                  </div>
+                </div>
+                <div style="padding: 0 16px 8px;">
+                  <span style="font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.02em;">Achievements</span>
+                </div>
+                <div class="list-group" style="margin: 0 16px;">
+                  <div class="achievement-row">
+                    <div class="achievement-badge">🏆</div>
+                    <div class="achievement-info">
+                      <h4>Week Warrior</h4>
+                      <p>7 day streak achieved</p>
+                    </div>
+                  </div>
+                  <div class="achievement-row" style="border-top: 0.5px solid var(--separator);">
+                    <div class="achievement-badge">⭐</div>
+                    <div class="achievement-info">
+                      <h4>Word Master</h4>
+                      <p>Learned 300 words</p>
+                    </div>
+                  </div>
+                  <div class="achievement-row" style="border-top: 0.5px solid var(--separator);">
+                    <div class="achievement-badge locked">🔒</div>
+                    <div class="achievement-info">
+                      <h4>Perfectionist</h4>
+                      <p>Score 100% on 10 quizzes</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-bar">
+                <div class="tab-item">
+                  <span class="tab-icon">🏠</span>
+                  <span class="tab-label">Home</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">📖</span>
+                  <span class="tab-label">Learn</span>
+                </div>
+                <div class="tab-item active">
+                  <span class="tab-icon">🏆</span>
+                  <span class="tab-label">Profile</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">⚙️</span>
+                  <span class="tab-label">Settings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <span class="step-title">Learning Path</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:41</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="nav-large">
+                <h1>Learn</h1>
+              </div>
+              <div class="segmented-control">
+                <div class="segment active">Path</div>
+                <div class="segment">Skills</div>
+                <div class="segment">Review</div>
+              </div>
+              <div class="scroll-content">
+                <div style="padding: 0 16px 16px; text-align: center;">
+                  <div style="font-size: 15px; color: var(--text-secondary);">Unit 3: Daily Life</div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 0 16px;">
+                  <div style="width: 72px; height: 72px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px;">✓</div>
+                  <div style="width: 2px; height: 32px; background: var(--green);"></div>
+                  <div style="width: 72px; height: 72px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px;">✓</div>
+                  <div style="width: 2px; height: 32px; background: var(--green);"></div>
+                  <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; box-shadow: 0 0 20px rgba(10, 132, 255, 0.5);">🍽️</div>
+                  <div style="font-size: 17px; font-weight: 600;">Food & Dining</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">In Progress • 2/5 lessons</div>
+                  <div style="width: 2px; height: 32px; background: var(--fill-tertiary);"></div>
+                  <div style="width: 64px; height: 64px; background: var(--fill-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; opacity: 0.5;">🏠</div>
+                  <div style="width: 2px; height: 32px; background: var(--fill-tertiary);"></div>
+                  <div style="width: 64px; height: 64px; background: var(--fill-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; opacity: 0.5;">🛒</div>
+                </div>
+              </div>
+              <div class="tab-bar">
+                <div class="tab-item">
+                  <span class="tab-icon">🏠</span>
+                  <span class="tab-label">Home</span>
+                </div>
+                <div class="tab-item active">
+                  <span class="tab-icon">📖</span>
+                  <span class="tab-label">Learn</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">🏆</span>
+                  <span class="tab-label">Profile</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">⚙️</span>
+                  <span class="tab-label">Settings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="annotation bottom" style="top: 520px; left: 115px;">Current lesson</div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <span class="step-title">Settings</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:41</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="nav-large">
+                <h1>Settings</h1>
+              </div>
+              <div class="scroll-content">
+                <div class="section">
+                  <div class="section-title">Learning</div>
+                  <div class="list-group">
+                    <div class="list-row">
+                      <div class="list-icon blue">🌐</div>
+                      <span>Learning Language</span>
+                      <span class="value">French</span>
+                      <span class="chevron">›</span>
+                    </div>
+                    <div class="list-row">
+                      <div class="list-icon green">🎯</div>
+                      <span>Daily Goal</span>
+                      <span class="value">20 XP</span>
+                      <span class="chevron">›</span>
+                    </div>
+                    <div class="list-row">
+                      <div class="list-icon purple">⏰</div>
+                      <span>Reminders</span>
+                      <span class="value">9:00 AM</span>
+                      <span class="chevron">›</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="section">
+                  <div class="section-title">Audio</div>
+                  <div class="list-group">
+                    <div class="list-row">
+                      <div class="list-icon orange">🔊</div>
+                      <span>Sound Effects</span>
+                      <div style="width: 51px; height: 31px; background: var(--green); border-radius: 16px; position: relative;">
+                        <div style="width: 27px; height: 27px; background: white; border-radius: 50%; position: absolute; top: 2px; right: 2px;"></div>
+                      </div>
+                    </div>
+                    <div class="list-row">
+                      <div class="list-icon cyan">🎤</div>
+                      <span>Microphone</span>
+                      <span class="value">Enabled</span>
+                      <span class="chevron">›</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="section">
+                  <div class="section-title">Account</div>
+                  <div class="list-group">
+                    <div class="list-row">
+                      <div class="list-icon purple">👤</div>
+                      <span>Profile</span>
+                      <span class="chevron">›</span>
+                    </div>
+                    <div class="list-row">
+                      <div class="list-icon yellow">⭐</div>
+                      <span>Premium</span>
+                      <span class="value" style="color: var(--yellow);">Upgrade</span>
+                      <span class="chevron">›</span>
+                    </div>
+                    <div class="list-row">
+                      <div class="list-icon red">🚪</div>
+                      <span style="color: var(--red);">Sign Out</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-bar">
+                <div class="tab-item">
+                  <span class="tab-icon">🏠</span>
+                  <span class="tab-label">Home</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">📖</span>
+                  <span class="tab-label">Learn</span>
+                </div>
+                <div class="tab-item">
+                  <span class="tab-icon">🏆</span>
+                  <span class="tab-label">Profile</span>
+                </div>
+                <div class="tab-item active">
+                  <span class="tab-icon">⚙️</span>
+                  <span class="tab-label">Settings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <span class="section-divider-text">Language Selection Flow</span>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <!-- Journey 3: Language Selection -->
+    <div class="journey-row">
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <span class="step-title">Choose Language</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:41</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="scroll-content">
+                <div style="text-align: center; padding: 40px 16px 32px;">
+                  <div style="font-size: 48px; margin-bottom: 16px;">🌍</div>
+                  <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">What do you want to learn?</div>
+                  <div style="font-size: 15px; color: var(--text-secondary);">Choose a language to get started</div>
+                </div>
+                <div class="language-selector">
+                  <div class="language-option selected">
+                    <div class="language-flag">🇫🇷</div>
+                    <div>
+                      <div class="language-name">French</div>
+                      <div class="language-native">Français</div>
+                    </div>
+                  </div>
+                  <div class="language-option">
+                    <div class="language-flag">🇪🇸</div>
+                    <div>
+                      <div class="language-name">Spanish</div>
+                      <div class="language-native">Español</div>
+                    </div>
+                  </div>
+                  <div class="language-option">
+                    <div class="language-flag">🇩🇪</div>
+                    <div>
+                      <div class="language-name">German</div>
+                      <div class="language-native">Deutsch</div>
+                    </div>
+                  </div>
+                  <div class="language-option">
+                    <div class="language-flag">🇯🇵</div>
+                    <div>
+                      <div class="language-name">Japanese</div>
+                      <div class="language-native">日本語</div>
+                    </div>
+                  </div>
+                  <div class="language-option">
+                    <div class="language-flag">🇨🇳</div>
+                    <div>
+                      <div class="language-name">Chinese</div>
+                      <div class="language-native">中文</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="continue-btn">Continue</div>
+              </div>
+            </div>
+          </div>
+          <div class="annotation right" style="top: 320px; left: 390px;">Selected language →</div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <span class="step-title">Set Daily Goal</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:41</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="nav-inline">
+                <div class="nav-inline-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                  </svg>
+                  <span>Back</span>
+                </div>
+                <span class="nav-inline-title"></span>
+                <span class="nav-inline-right"></span>
+              </div>
+              <div class="scroll-content">
+                <div style="text-align: center; padding: 40px 16px 32px;">
+                  <div style="font-size: 48px; margin-bottom: 16px;">🎯</div>
+                  <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Set your daily goal</div>
+                  <div style="font-size: 15px; color: var(--text-secondary);">How much time can you dedicate?</div>
+                </div>
+                <div style="padding: 0 16px;">
+                  <div style="background: var(--bg-grouped); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 24px;">🐢</div>
+                    <div style="flex: 1;">
+                      <div style="font-size: 17px; font-weight: 600;">Casual</div>
+                      <div style="font-size: 13px; color: var(--text-secondary);">5 minutes per day • 10 XP</div>
+                    </div>
+                  </div>
+                  <div style="background: rgba(10, 132, 255, 0.15); border: 2px solid var(--blue); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 24px;">🏃</div>
+                    <div style="flex: 1;">
+                      <div style="font-size: 17px; font-weight: 600;">Regular</div>
+                      <div style="font-size: 13px; color: var(--text-secondary);">10 minutes per day • 20 XP</div>
+                    </div>
+                    <div style="color: var(--blue);">✓</div>
+                  </div>
+                  <div style="background: var(--bg-grouped); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 24px;">🚀</div>
+                    <div style="flex: 1;">
+                      <div style="font-size: 17px; font-weight: 600;">Serious</div>
+                      <div style="font-size: 13px; color: var(--text-secondary);">15 minutes per day • 30 XP</div>
+                    </div>
+                  </div>
+                  <div style="background: var(--bg-grouped); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 24px;">⚡</div>
+                    <div style="flex: 1;">
+                      <div style="font-size: 17px; font-weight: 600;">Intense</div>
+                      <div style="font-size: 13px; color: var(--text-secondary);">20 minutes per day • 50 XP</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="continue-btn">Continue</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <span class="step-title">Enable Reminders</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:41</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="nav-inline">
+                <div class="nav-inline-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                  </svg>
+                  <span>Back</span>
+                </div>
+                <span class="nav-inline-title"></span>
+                <span class="nav-inline-right">Skip</span>
+              </div>
+              <div class="scroll-content">
+                <div style="text-align: center; padding: 60px 16px 40px;">
+                  <div style="font-size: 64px; margin-bottom: 24px;">🔔</div>
+                  <div style="font-size: 28px; font-weight: 700; margin-bottom: 12px;">Stay on track</div>
+                  <div style="font-size: 17px; color: var(--text-secondary); line-height: 1.5;">
+                    Enable reminders to build a consistent learning habit
+                  </div>
+                </div>
+                <div style="padding: 0 16px;">
+                  <div style="background: var(--bg-grouped); border-radius: 12px; padding: 16px; margin-bottom: 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                      <span style="font-size: 17px; font-weight: 600;">Reminder Time</span>
+                      <span style="font-size: 17px; color: var(--blue);">9:00 AM</span>
+                    </div>
+                    <div style="display: flex; gap: 8px; justify-content: center;">
+                      <div style="width: 36px; height: 36px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">M</div>
+                      <div style="width: 36px; height: 36px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">T</div>
+                      <div style="width: 36px; height: 36px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">W</div>
+                      <div style="width: 36px; height: 36px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">T</div>
+                      <div style="width: 36px; height: 36px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">F</div>
+                      <div style="width: 36px; height: 36px; background: var(--fill-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">S</div>
+                      <div style="width: 36px; height: 36px; background: var(--fill-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">S</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="continue-btn">Enable Notifications</div>
+                <div style="text-align: center; padding: 16px;">
+                  <span style="font-size: 15px; color: var(--text-secondary);">You can change this later in Settings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <span class="step-title">Ready to Start</span>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="dynamic-island"></div>
+            <div class="screen-layout">
+              <div class="status-bar">
+                <span class="status-bar-left">9:41</span>
+                <span class="status-bar-right">📶 📡 🔋</span>
+              </div>
+              <div class="scroll-content" style="display: flex; flex-direction: column; justify-content: center;">
+                <div style="text-align: center; padding: 40px 16px;">
+                  <div style="font-size: 80px; margin-bottom: 24px;">🎉</div>
+                  <div style="font-size: 32px; font-weight: 700; margin-bottom: 12px;">You're all set!</div>
+                  <div style="font-size: 17px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 32px;">
+                    Let's begin your French learning journey
+                  </div>
+                  <div style="background: var(--bg-grouped); border-radius: 16px; padding: 24px; margin-bottom: 24px;">
+                    <div style="display: flex; justify-content: space-around;">
+                      <div style="text-align: center;">
+                        <div style="font-size: 32px; margin-bottom: 8px;">🇫🇷</div>
+                        <div style="font-size: 15px; font-weight: 600;">French</div>
+                      </div>
+                      <div style="text-align: center;">
+                        <div style="font-size: 32px; margin-bottom: 8px;">🎯</div>
+                        <div style="font-size: 15px; font-weight: 600;">20 XP/day</div>
+                      </div>
+                      <div style="text-align: center;">
+                        <div style="font-size: 32px; margin-bottom: 8px;">⏰</div>
+                        <div style="font-size: 15px; font-weight: 600;">9:00 AM</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding: 0 16px;">
+                  <div class="action-btn primary" style="text-align: center; padding: 18px; font-size: 18px;">Start Learning French</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
