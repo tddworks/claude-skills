@@ -54,18 +54,27 @@ Create interactive HTML prototypes showing mobile app user journeys with realist
   </div>
   <div class="phone-frame">
     <div class="phone-screen">
-      <div class="dynamic-island"></div>
       <div class="screen-layout">
         <div class="status-bar">
           <span class="status-bar-left">9:41</span>
-          <span class="status-bar-right">📶 📡 🔋</span>
+          <div class="status-bar-right">
+            <!-- Signal bars -->
+            <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><path d="M1 4.5C1 3.67 1.67 3 2.5 3h1C4.33 3 5 3.67 5 4.5v4C5 9.33 4.33 10 3.5 10h-1C1.67 10 1 9.33 1 8.5v-4zM6 3.5C6 2.67 6.67 2 7.5 2h1C9.33 2 10 2.67 10 3.5v5c0 .83-.67 1.5-1.5 1.5h-1C6.67 9 6 8.33 6 7.5v-5zM11 2.5c0-.83.67-1.5 1.5-1.5h1c.83 0 1.5.67 1.5 1.5v6c0 .83-.67 1.5-1.5 1.5h-1c-.83 0-1.5-.67-1.5-1.5v-6z"/></svg>
+            <!-- WiFi -->
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.5a6.5 6.5 0 0 1 4.6 1.9.75.75 0 1 0 1.06-1.06A8 8 0 0 0 7.5 1a8 8 0 0 0-5.66 2.34.75.75 0 0 0 1.06 1.06A6.5 6.5 0 0 1 7.5 2.5zM7.5 5.5a4 4 0 0 1 2.83 1.17.75.75 0 1 0 1.06-1.06A5.5 5.5 0 0 0 7.5 4a5.5 5.5 0 0 0-3.89 1.61.75.75 0 0 0 1.06 1.06A4 4 0 0 1 7.5 5.5zM9.25 8.75a1.75 1.75 0 1 1-3.5 0 1.75 1.75 0 0 1 3.5 0z"/></svg>
+            <!-- Battery -->
+            <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0.5" y="0.5" width="21" height="11" rx="2.5" stroke="currentColor" fill="none"/><rect x="22" y="4" width="2" height="4" rx="1"/><rect x="2" y="2" width="17" height="7" rx="1"/></svg>
+          </div>
         </div>
         <!-- Screen content here -->
       </div>
+      <div class="home-indicator"></div>
     </div>
   </div>
 </div>
 ```
+
+**Note:** The phone frame uses a notch-style bezel by default. To use Dynamic Island style instead, add the `dynamic-island-style` class to `.phone-frame` and include a `<div class="dynamic-island"></div>` element.
 
 ### Flow Arrow
 ```html

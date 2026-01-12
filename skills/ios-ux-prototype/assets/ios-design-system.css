@@ -140,24 +140,40 @@ body {
 .phone-frame {
   width: var(--phone-width);
   height: var(--phone-height);
-  background: #000;
-  border-radius: 47px;
-  padding: 11px;
+  background: var(--bg-primary);
+  border-radius: 54px;
+  padding: 12px;
   position: relative;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.1),
-    0 50px 100px -20px rgba(0,0,0,0.7);
+    0 50px 100px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* iPhone-style notch (Dynamic Island alternative) */
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 35px;
+  background: var(--bg-primary);
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
 }
 
 .phone-screen {
   width: 100%;
   height: 100%;
-  background: var(--bg-primary);
-  border-radius: 39px;
+  background: var(--bg-grouped);
+  border-radius: 44px;
   overflow: hidden;
   position: relative;
 }
 
+/* Dynamic Island (for iPhone 14 Pro style) */
 .dynamic-island {
   position: absolute;
   top: 11px;
@@ -167,6 +183,24 @@ body {
   height: 37px;
   background: #000;
   border-radius: 20px;
+  z-index: 100;
+}
+
+/* Use .phone-frame.dynamic-island-style to switch to Dynamic Island */
+.phone-frame.dynamic-island-style::before {
+  display: none;
+}
+
+/* Home Indicator */
+.home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 134px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
   z-index: 100;
 }
 
@@ -180,12 +214,14 @@ body {
 
 .status-bar {
   height: 54px;
-  padding: 14px 24px 0;
+  padding: 16px 28px 8px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   font-size: 14px;
   font-weight: 600;
+  position: relative;
+  z-index: 5;
 }
 
 .status-bar-left {
@@ -194,8 +230,33 @@ body {
 
 .status-bar-right {
   display: flex;
-  gap: 5px;
+  gap: 6px;
   align-items: center;
+}
+
+/* Status bar SVG icons */
+.status-bar-right svg {
+  width: auto;
+  height: 11px;
+  fill: currentColor;
+}
+
+/* Signal bars icon */
+.status-icon-signal {
+  width: 17px;
+  height: 11px;
+}
+
+/* WiFi icon */
+.status-icon-wifi {
+  width: 15px;
+  height: 11px;
+}
+
+/* Battery icon */
+.status-icon-battery {
+  width: 25px;
+  height: 12px;
 }
 
 /* ==================== Navigation Bars ==================== */
