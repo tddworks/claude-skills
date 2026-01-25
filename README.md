@@ -9,11 +9,16 @@ For more information, check out:
 
 # About This Repository
 
-This repository contains skills that demonstrate what's possible with Claude's skills system. These skills range from creative applications (art, music, design) to technical tasks (testing web apps, MCP server generation) to enterprise workflows (communications, branding, etc.).
+This repository contains skills for iOS/macOS app development with Tuist. Each skill is self-contained in its own folder with a `SKILL.md` file containing the instructions and metadata that Claude uses.
 
-Each skill is self-contained in its own folder with a `SKILL.md` file containing the instructions and metadata that Claude uses. Browse through these skills to get inspiration for your own skills or to understand different patterns and approaches.
+## Supported Skills
 
-Many skills in this repo are open source (Apache 2.0). We've also included the document creation & editing skills that power [Claude's document capabilities](https://www.anthropic.com/news/create-files) under the hood in the [`skills/docx`](./skills/docx), [`skills/pdf`](./skills/pdf), [`skills/pptx`](./skills/pptx), and [`skills/xlsx`](./skills/xlsx) subfolders. These are source-available, not open source, but we wanted to share these with developers as a reference for more complex skills that are actively used in a production AI application.
+| Skill | Description |
+|-------|-------------|
+| **[app-localization](./skills/tuist-app-localization)** | iOS/macOS app localization management for Tuist-based projects. Add translation keys, validate .strings files, sync translations across languages, AI-powered translation, and update Swift code to use localized strings. |
+| **[ios-ux-prototype](./skills/ios-ux-prototype)** | Create interactive iOS/mobile app UX flow prototypes as self-contained HTML documents with realistic iPhone mockups, flow arrows, and annotations. |
+| **[appstore-info-generator](./skills/appstore-info-generator)** | Generate comprehensive App Store listing documentation with multilingual support (EN, zh-Hans, zh-Hant). Includes title, subtitle, keywords, description, and release notes. |
+| **[ios-app-scaffold](./skills/ios-app-scaffold)** | Scaffold iOS apps with Tuist, Swift 6, and layered architecture (Domain, Infrastructure, App). Generates ready-to-use project structure with SwiftData persistence and testing setup. |
 
 ## Disclaimer
 
