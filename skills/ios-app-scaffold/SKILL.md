@@ -122,6 +122,30 @@ struct OrdersView: View {
 }
 ```
 
+## Version Management
+
+Version numbers are managed in `Project.swift` build settings:
+
+```swift
+settings: .settings(
+    base: [
+        "MARKETING_VERSION": "1.0.0",      // App Store version
+        "CURRENT_PROJECT_VERSION": "1",     // Build number
+    ],
+    ...
+)
+```
+
+The `Info.plist` references these via build setting variables:
+- `CFBundleShortVersionString` → `$(MARKETING_VERSION)`
+- `CFBundleVersion` → `$(CURRENT_PROJECT_VERSION)`
+
+To bump version, edit `Project.swift`:
+```swift
+"MARKETING_VERSION": "1.1.0",
+"CURRENT_PROJECT_VERSION": "2",
+```
+
 ## XCConfig
 
 Build settings are managed via xcconfig files in `Sources/App/Resources/XCConfig/`:

@@ -131,6 +131,8 @@ let project = Project(
                     "ENABLE_DEBUG_DYLIB": "YES",
                     "ENABLE_PREVIEWS": "YES",
                     "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
+                    "MARKETING_VERSION": "1.0.0",
+                    "CURRENT_PROJECT_VERSION": "1",
                 ],
                 configurations: [
                     .debug(name: .debug, xcconfig: "Sources/App/Resources/XCConfig/debug.xcconfig"),
@@ -252,9 +254,9 @@ TestResults.xcresult
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
+    <string>$(MARKETING_VERSION)</string>
     <key>CFBundleVersion</key>
-    <string>1</string>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>UIApplicationSceneManifest</key>
