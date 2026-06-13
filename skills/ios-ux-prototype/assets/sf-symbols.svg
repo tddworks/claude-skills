@@ -1,0 +1,59 @@
+<!--
+  SF Symbol-style sprite sheet for iOS 26 prototypes.
+  Paste this whole block ONCE near the top of <body>, then reference any glyph:
+      <svg class="sf"><use href="#sf-house"/></svg>
+  Glyphs use currentColor, so they inherit the container's text color.
+  Add more glyphs by following the same <symbol> pattern (24x24 viewBox).
+  There are no country flags in SF Symbols — keep flag emoji (🇭🇰) for regions.
+-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Navigation / tab bar -->
+  <symbol id="sf-house" viewBox="0 0 24 24"><path fill="currentColor" d="M11.32 3.3 3.5 9.6c-.3.25-.5.62-.5 1V19a1.5 1.5 0 0 0 1.5 1.5H9V15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5.5h4.5A1.5 1.5 0 0 0 21 19v-8.4c0-.38-.18-.74-.48-.98L12.7 3.3a1.1 1.1 0 0 0-1.38 0Z"/></symbol>
+  <symbol id="sf-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18" stroke-linecap="round"/><path d="M12 3c2.6 2.5 2.6 15.5 0 18M12 3c-2.6 2.5-2.6 15.5 0 18"/></g></symbol>
+  <symbol id="sf-antenna" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/><path d="M8.6 8.6a5 5 0 0 0 0 6.8M15.4 8.6a5 5 0 0 1 0 6.8"/><path d="M6 6a8.5 8.5 0 0 0 0 12M18 6a8.5 8.5 0 0 1 0 12"/></g></symbol>
+  <symbol id="sf-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.2"/><path stroke-linecap="round" d="M12 2.6v2.3M12 19.1v2.3M21.4 12h-2.3M4.9 12H2.6M18.6 5.4l-1.6 1.6M7 17l-1.6 1.6M18.6 18.6 17 17M7 7 5.4 5.4"/></g></symbol>
+  <symbol id="sf-person" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="12" cy="7.5" r="4"/><path d="M4 20a8 8 0 0 1 16 0 1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/></g></symbol>
+  <symbol id="sf-magnifier" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></g></symbol>
+  <symbol id="sf-bell" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5a6 6 0 0 0-6 6v3.2L4.6 15a1 1 0 0 0 .9 1.5h13a1 1 0 0 0 .9-1.5L18 11.7V8.5a6 6 0 0 0-6-6Zm0 19a2.8 2.8 0 0 0 2.7-2H9.3a2.8 2.8 0 0 0 2.7 2Z"/></symbol>
+  <symbol id="sf-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3 2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8L6.6 19.6l1-6L3.3 9.4l6-.9Z"/></symbol>
+
+  <!-- Chevrons & arrows -->
+  <symbol id="sf-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" d="M9 5.5 15.5 12 9 18.5"/></symbol>
+  <symbol id="sf-chevron-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" d="M5.5 9 12 15.5 18.5 9"/></symbol>
+  <symbol id="sf-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M15 5.5 8.5 12 15 18.5"/></symbol>
+  <symbol id="sf-arrow-fwd" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="sf-arrow-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" d="M12 20V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="sf-arrow-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M6 13l6 6 6-6"/></symbol>
+  <symbol id="sf-refresh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 0 1 12.7-5.4L20 9"/><path d="M20 4v5h-5"/><path d="M19.5 12a7.5 7.5 0 0 1-12.7 5.4L4 15"/><path d="M4 20v-5h5"/></g></symbol>
+
+  <!-- Actions -->
+  <symbol id="sf-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="sf-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.6l4.5 4.6L19 6.4"/></symbol>
+  <symbol id="sf-xmark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="sf-ellipsis" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></g></symbol>
+  <symbol id="sf-share" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 12v6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-6"/></g></symbol>
+  <symbol id="sf-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16M9 6.5V4.5h6v2M6.5 6.5 7.5 20a1.5 1.5 0 0 0 1.5 1.4h6a1.5 1.5 0 0 0 1.5-1.4l1-13.5"/></g></symbol>
+  <symbol id="sf-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20.3 4.6 13a5 5 0 0 1 7-7.1l.4.4.4-.4a5 5 0 0 1 7 7.1Z"/></symbol>
+  <symbol id="sf-paintbrush" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M14.5 4 20 9.5l-6.5 6.5-5.5-5.5z"/><path d="M8 10.5 5 13.5c-1 1-1.3 4-2.2 4.9.9-.9 3.9-1.2 4.9-2.2l3-3"/></g></symbol>
+
+  <!-- Content / objects -->
+  <symbol id="sf-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M7 3h6l5 5v11.5A1.5 1.5 0 0 1 16.5 21h-9A1.5 1.5 0 0 1 6 19.5v-15A1.5 1.5 0 0 1 7 3Z"/><path d="M13 3v5h5"/></g></symbol>
+  <symbol id="sf-clipboard" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="5.5" y="4.5" width="13" height="16" rx="2.2"/><rect x="8.5" y="2.8" width="7" height="3.4" rx="1.2" fill="currentColor" stroke="none"/><path d="M9 11h6M9 14.5h6"/></g></symbol>
+  <symbol id="sf-folder" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4l2 2h7A1.5 1.5 0 0 1 19 8.5v9A1.5 1.5 0 0 1 17.5 19h-13A1.5 1.5 0 0 1 3 17.5Z"/></symbol>
+  <symbol id="sf-photo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="m4 17 5-5 4 4 3-3 4 4" stroke-linecap="round" stroke-linejoin="round"/></g></symbol>
+  <symbol id="sf-qrcode" viewBox="0 0 24 24"><g fill="currentColor"><path d="M3 3h7v7H3zm2 2v3h3V5z"/><path d="M14 3h7v7h-7zm2 2v3h3V5z"/><path d="M3 14h7v7H3zm2 2v3h3v-3z"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></g></symbol>
+  <symbol id="sf-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9.5 14.5 14.5 9.5"/><path d="M8.3 11 6.4 12.9a3.4 3.4 0 0 0 4.8 4.8L13 16"/><path d="M16 13l1.9-1.9a3.4 3.4 0 0 0-4.8-4.8L11.4 8"/></g></symbol>
+  <symbol id="sf-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 6h11.5M8.5 12h11.5M8.5 18h11.5"/></g><g fill="currentColor"><circle cx="4.3" cy="6" r="1.2"/><circle cx="4.3" cy="12" r="1.2"/><circle cx="4.3" cy="18" r="1.2"/></g></symbol>
+
+  <!-- Status / system -->
+  <symbol id="sf-lock" viewBox="0 0 24 24"><g><rect x="5" y="10" width="14" height="11" rx="3" fill="currentColor"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10" fill="none" stroke="currentColor" stroke-width="1.8"/></g></symbol>
+  <symbol id="sf-shield" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.4 4.8 5.2v5.7c0 4.7 3.07 8.4 7.2 10.5 4.13-2.1 7.2-5.8 7.2-10.5V5.2L12 2.4Z"/></symbol>
+  <symbol id="sf-bolt" viewBox="0 0 24 24"><path fill="currentColor" d="M13.6 2 5.4 12.6c-.3.4-.02.95.48.95H10l-1.4 7.8c-.1.55.6.86.93.4L19 9.8c.3-.4.02-.95-.48-.95H14l1.5-6.4c.13-.57-.6-.9-.94-.45Z"/></symbol>
+  <symbol id="sf-power" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v9"/><path d="M6.6 6.8a8 8 0 1 0 10.8 0"/></g></symbol>
+  <symbol id="sf-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 11v5.2"/><circle cx="12" cy="7.6" r="1.05" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="sf-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5.2l3.4 2"/></g></symbol>
+  <symbol id="sf-chart" viewBox="0 0 24 24"><g fill="currentColor"><rect x="3" y="13" width="4" height="8" rx="1.2"/><rect x="10" y="8" width="4" height="13" rx="1.2"/><rect x="17" y="4" width="4" height="17" rx="1.2"/></g></symbol>
+  <symbol id="sf-wifi" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3.5 8.7a13 13 0 0 1 17 0"/><path d="M6.7 12.3a8 8 0 0 1 10.6 0"/><path d="M9.8 15.8a3.5 3.5 0 0 1 4.4 0"/></g><circle cx="12" cy="18.8" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="sf-nosign" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M5.6 5.6 18.4 18.4"/></g></symbol>
+  <symbol id="sf-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/></g><path fill="currentColor" d="m15.6 8.4-4.7 2.2-2.2 4.7 4.7-2.2z"/></symbol>
+</svg>

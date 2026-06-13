@@ -226,20 +226,24 @@ Use when options may overflow or vary in count.
 </div>
 ```
 
-### Bottom Tab Bar
-Use sparingly - only for top-level app navigation.
+### Bottom Tab Bar (iOS 26 Liquid Glass)
+Use sparingly - only for top-level app navigation. The bar is a floating,
+translucent glass capsule detached from the screen edges; the active item gets
+its own glass "lens" pill. Use SF Symbols (`.tab-ic`) — not emoji.
 ```html
 <div class="tab-bar">
   <div class="tab-item active">
-    <span class="tab-icon">🏠</span>
+    <svg class="tab-ic"><use href="#sf-house"/></svg>
     <span class="tab-label">Home</span>
   </div>
   <div class="tab-item">
-    <span class="tab-icon">📱</span>
+    <svg class="tab-ic"><use href="#sf-globe"/></svg>
     <span class="tab-label">Apps</span>
   </div>
 </div>
 ```
+Give scrolling screens `padding-bottom: 104px` on `.scroll-content` so the last
+rows clear the floating bar.
 
 ---
 
@@ -263,6 +267,60 @@ Use sparingly - only for top-level app navigation.
 <div class="highlight-box">
   <h4>💡 Tip</h4>
   <p>The first 3 screenshots are most important.</p>
+</div>
+```
+
+---
+
+## iOS 26: Liquid Glass & SF Symbols
+
+The default visual target. Apply unless the user requests an older iOS look.
+
+### SF Symbols (never emoji)
+
+Paste the sprite from `assets/sf-symbols.svg` once near the top of `<body>`,
+then reference any glyph. Glyphs inherit `currentColor`.
+
+```html
+<svg class="sf"><use href="#sf-bell"/></svg>          <!-- 20×20 default -->
+<svg class="sf" style="width:28px;height:28px"><use href="#sf-bolt"/></svg>
+```
+
+- **Solid colored squares** (`.list-icon`): glyph auto-renders white.
+  `<div class="list-icon blue"><svg><use href="#sf-globe"/></svg></div>`
+- **Tinted squares** (`.action-icon`, custom): set `color` to match the tint.
+  `<div class="action-icon blue" style="color:var(--blue)"><svg class="sf"><use href="#sf-chart"/></svg></div>`
+- **Country flags** are the only allowed emoji — SF Symbols has none.
+- Missing a glyph? Add a `<symbol id="sf-…" viewBox="0 0 24 24">` to the sprite.
+
+### Liquid Glass nav / toolbar button
+
+Trailing action on a nav bar — circular glass, or a pill for text labels.
+
+```html
+<!-- circular icon button -->
+<span class="nav-glass-btn"><svg class="sf"><use href="#sf-plus"/></svg></span>
+
+<!-- pill with text (tint variants: .danger, .warn) -->
+<span class="nav-glass-btn text danger">Close All</span>
+
+<!-- pair a title with a trailing button -->
+<div class="nav-large with-action">
+  <h1>Proxies</h1>
+  <span class="nav-glass-btn warn"><svg class="sf"><use href="#sf-clock"/></svg></span>
+</div>
+```
+
+### Translucent system alert (glass)
+
+```html
+<div style="position:absolute; inset:0; background:rgba(0,0,0,0.55);
+            display:flex; align-items:center; justify-content:center; padding:24px;">
+  <div style="background:rgba(54,54,58,0.82); backdrop-filter:blur(20px);
+              border-radius:18px; width:280px; overflow:hidden; text-align:center;
+              border:0.5px solid rgba(255,255,255,0.12);">
+    <!-- title, body, and a row of action buttons -->
+  </div>
 </div>
 ```
 

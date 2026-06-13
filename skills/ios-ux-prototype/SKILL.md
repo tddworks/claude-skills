@@ -15,8 +15,56 @@ Create interactive HTML prototypes showing mobile app user journeys with realist
 ## Quick Start
 
 1. Copy CSS from `assets/ios-design-system.css` into a new HTML file
-2. Structure: page header → journey rows → phone frames with content
-3. Add flow arrows between screens and annotations for callouts
+2. Paste the sprite from `assets/sf-symbols.svg` once near the top of `<body>`
+3. Structure: page header → journey rows → phone frames with content
+4. Add flow arrows between screens and annotations for callouts
+
+## iOS 26 Design (default)
+
+Target the current iOS 26 design language — **Liquid Glass** surfaces and
+**SF Symbols**. Apply these by default unless the user asks for an older look:
+
+- **Liquid Glass floating tab bar** — use `.tab-bar` (now a translucent,
+  blurred capsule detached from the screen edges; the active tab gets its own
+  glass "lens" pill). Give scrolling screens `padding-bottom: 104px` on
+  `.scroll-content` so rows clear the floating bar.
+- **Liquid Glass nav/toolbar buttons** — use `.nav-glass-btn` (circular) or
+  `.nav-glass-btn.text` (pill) for trailing actions, instead of plain text.
+- **SF Symbols over emoji** — never use emoji for UI affordances, list icons,
+  tab icons, or actions. Reference glyphs from the sprite:
+  `<svg class="sf"><use href="#sf-house"/></svg>`. Glyphs inherit `currentColor`.
+  - Country flags are the *only* allowed emoji (SF Symbols has no flag glyphs).
+  - Need a glyph that isn't in the sprite? Add a new `<symbol>` (24×24 viewBox)
+    following the existing pattern.
+- Glassy segmented controls and translucent system alerts come for free in the CSS.
+
+```html
+<!-- iOS 26 large-title nav with a Liquid Glass action button -->
+<div class="nav-large with-action">
+  <h1>Proxies</h1>
+  <span class="nav-glass-btn"><svg class="sf"><use href="#sf-plus"/></svg></span>
+</div>
+
+<!-- Liquid Glass floating tab bar with SF Symbols -->
+<div class="tab-bar">
+  <div class="tab-item active">
+    <svg class="tab-ic"><use href="#sf-house"/></svg>
+    <span class="tab-label">Home</span>
+  </div>
+  <div class="tab-item">
+    <svg class="tab-ic"><use href="#sf-gear"/></svg>
+    <span class="tab-label">Settings</span>
+  </div>
+</div>
+```
+
+Common sprite glyphs: `sf-house`, `sf-globe`, `sf-antenna`, `sf-gear`,
+`sf-person`, `sf-magnifier`, `sf-bell`, `sf-star`, `sf-chevron`,
+`sf-chevron-down`, `sf-back`, `sf-arrow-up/down`, `sf-refresh`, `sf-plus`,
+`sf-check`, `sf-xmark`, `sf-ellipsis`, `sf-share`, `sf-trash`, `sf-heart`,
+`sf-paintbrush`, `sf-doc`, `sf-clipboard`, `sf-folder`, `sf-photo`, `sf-qrcode`,
+`sf-link`, `sf-list`, `sf-lock`, `sf-shield`, `sf-bolt`, `sf-power`, `sf-info`,
+`sf-clock`, `sf-chart`, `sf-wifi`, `sf-nosign`, `sf-compass`.
 
 ## Page Structure
 
@@ -149,7 +197,10 @@ Create interactive HTML prototypes showing mobile app user journeys with realist
 ```html
 <div class="action-grid">
   <div class="action-card highlighted">
-    <div class="action-icon blue">📱</div>
+    <!-- tinted square: set the glyph color to match the tint -->
+    <div class="action-icon blue" style="color:var(--blue)">
+      <svg class="sf"><use href="#sf-bolt"/></svg>
+    </div>
     <h3>Feature</h3>
     <p>Description</p>
   </div>
@@ -160,9 +211,10 @@ Create interactive HTML prototypes showing mobile app user journeys with realist
 ```html
 <div class="list-group">
   <div class="list-row">
-    <div class="list-icon yellow">⭐</div>
+    <!-- solid color square: glyph renders white via .list-icon -->
+    <div class="list-icon yellow"><svg><use href="#sf-star"/></svg></div>
     <span>Setting</span>
-    <span class="chevron">›</span>
+    <span class="chevron"><svg><use href="#sf-chevron"/></svg></span>
   </div>
 </div>
 ```
@@ -203,4 +255,5 @@ Create interactive HTML prototypes showing mobile app user journeys with realist
 ## Resources
 
 - `assets/ios-design-system.css` - Complete CSS design system (copy into HTML)
+- `assets/sf-symbols.svg` - SF Symbol sprite sheet (paste once into `<body>`)
 - `references/ios-components.md` - Full component documentation with all variants

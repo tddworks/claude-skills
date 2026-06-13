@@ -337,8 +337,8 @@ body {
 }
 
 .segment.active {
-  background: var(--bg-secondary);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  background: rgba(120, 120, 128, 0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.12);
 }
 
 /* ==================== Scrollable Tabs ==================== */
@@ -606,13 +606,14 @@ body {
   font-size: 14px;
 }
 
-.list-icon.blue { background: var(--blue); color: #fff; }
-.list-icon.purple { background: var(--purple); color: #fff; }
-.list-icon.orange { background: var(--orange); color: #000; }
-.list-icon.green { background: var(--green); color: #000; }
-.list-icon.yellow { background: var(--yellow); color: #000; }
-.list-icon.red { background: var(--red); color: #fff; }
-.list-icon.gray { background: var(--text-tertiary); }
+/* SF Symbol glyphs render white on every colored tile (iOS Settings style) */
+.list-icon.blue { background: var(--blue); }
+.list-icon.purple { background: var(--purple); }
+.list-icon.orange { background: var(--orange); }
+.list-icon.green { background: var(--green); }
+.list-icon.yellow { background: var(--yellow); }
+.list-icon.red { background: var(--red); }
+.list-icon.gray { background: #636366; }
 
 .list-row span {
   flex: 1;
@@ -785,52 +786,122 @@ body {
   color: var(--text-secondary);
 }
 
-/* ==================== Bottom Tab Bar ==================== */
+/* ==================== Bottom Tab Bar (iOS 26 Liquid Glass) ==================== */
+/* A floating, translucent glass capsule detached from the screen edges.
+ * Pair with .nav-glass-btn and SF Symbols (see SF Symbols section below).
+ * NOTE: scroll-content needs ~104px bottom padding so rows clear this bar. */
 
 .tab-bar {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 83px;
-  background: rgba(28, 28, 30, 0.95);
-  backdrop-filter: blur(20px);
-  border-top: 0.5px solid var(--separator);
-  padding: 0 16px;
-  padding-bottom: 34px;
+  bottom: 16px;
+  left: 14px;
+  right: 14px;
+  height: 66px;
+  background: rgba(44, 44, 48, 0.55);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border-radius: 33px;
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 10px 34px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
-  padding-top: 6px;
+  align-items: center;
+  padding: 0 6px;
+  z-index: 50;
 }
 
 .tab-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 4px 12px;
+  gap: 3px;
+  padding: 7px 16px;
+  border-radius: 22px;
   cursor: pointer;
-}
-
-.tab-icon {
-  font-size: 24px;
-  color: var(--text-tertiary);
   transition: color 0.2s;
 }
 
+/* Active tab sits in its own glass-tinted "lens" pill */
+.tab-item.active {
+  background: rgba(120, 120, 128, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* SF Symbol icon (preferred) */
+.tab-ic {
+  width: 25px;
+  height: 25px;
+  color: rgba(235, 235, 245, 0.55);
+}
+
+/* Legacy emoji/text icon (avoid — prefer .tab-ic SF Symbols) */
+.tab-icon {
+  font-size: 24px;
+  color: rgba(235, 235, 245, 0.55);
+}
+
+.tab-item.active .tab-ic,
 .tab-item.active .tab-icon {
   color: var(--blue);
 }
 
 .tab-label {
   font-size: 10px;
-  color: var(--text-tertiary);
+  font-weight: 500;
+  color: rgba(235, 235, 245, 0.55);
   transition: color 0.2s;
 }
 
 .tab-item.active .tab-label {
   color: var(--blue);
+}
+
+/* ==================== Liquid Glass Nav Button ==================== */
+/* iOS 26 toolbar/nav-bar action button: a circular (or pill) glass control.
+ * Place in .nav-large alongside the <h1>, or in .nav-inline. */
+
+.nav-glass-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(120, 120, 128, 0.26);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 0.5px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.nav-glass-btn svg { width: 19px; height: 19px; }
+
+/* Pill variant for text labels ("Edit", "Close All") or icon + text */
+.nav-glass-btn.text {
+  width: auto;
+  border-radius: 18px;
+  padding: 0 13px;
+  height: 36px;
+  font-size: 15px;
+  font-weight: 600;
+  gap: 4px;
+}
+.nav-glass-btn.text svg { width: 13px; height: 13px; }
+
+/* Tint variants */
+.nav-glass-btn.danger { color: var(--red); }
+.nav-glass-btn.warn { color: var(--orange); }
+
+/* Make .nav-large lay out a title + trailing glass button */
+.nav-large.with-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* ==================== Annotations ==================== */
@@ -977,3 +1048,26 @@ body {
   font-size: 13px;
   color: var(--text-secondary);
 }
+
+/* ==================== SF Symbols ==================== */
+/* iOS 26 prototypes use SF Symbol-style inline SVGs instead of emoji.
+ * Include the sprite sheet from assets/sf-symbols.svg once at the top of
+ * <body>, then reference a glyph anywhere with:
+ *   <svg class="sf"><use href="#sf-house"/></svg>
+ * Glyphs inherit color via currentColor, so the container's color wins. */
+
+svg { display: block; }
+
+.sf { width: 20px; height: 20px; color: currentColor; }
+
+/* Solid colored icon squares (settings rows) — white glyph on the color */
+.list-icon { color: #fff; }
+.list-icon svg { width: 17px; height: 17px; }
+
+/* Tinted icon squares (action cards) — colored glyph; set color inline,
+ * e.g. style="background:rgba(10,132,255,0.2); color:var(--blue)" */
+.action-icon svg { width: 19px; height: 19px; }
+.form-row-icon svg { width: 15px; height: 15px; }
+
+/* Chevrons as SF Symbols (preferred over the › character) */
+.chevron svg { width: 16px; height: 16px; }
